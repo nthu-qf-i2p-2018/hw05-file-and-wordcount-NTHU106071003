@@ -29,7 +29,7 @@ def main(filename):
         writer.writerows(counter.most_common())
 
     with open('wordcount.json', 'w') as json_file:
-        json.dump(counter, json_file)
+        json.dump(counter.most_common(), json_file)
  
     with open('wordcount.pkl', 'wb') as pkl_file:
         pickle.dump(counter, pkl_file)
