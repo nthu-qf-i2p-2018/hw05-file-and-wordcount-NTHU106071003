@@ -18,20 +18,18 @@ def main(filename):
         words = line.split()
         for word in words: 
             word = word.strip(string.punctuation)
-            word = word.strip()
-            if word:
-                all_words.append(word)
-                
+            if word !=(" "):
+                all_words.append(word)   
     from collections import Counter
     counter = Counter(all_words)
     with open("wordcount.csv", "w") as csv_file:
         
-        writer = csv.writer(csv_file, delimiter=',')
+        writer = csv.writer(csv_file, lineterminator='\n')
         writer.writerow(['word', 'count'])
         writer.writerows(counter.most_common())
 
     with open('wordcount.json', 'w') as json_file:
-        json.dump(counter.most_common(), json_file)
+        json.dump(counter, json_file)
  
     with open('wordcount.pkl', 'wb') as pkl_file:
         pickle.dump(counter, pkl_file)
